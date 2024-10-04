@@ -3,12 +3,17 @@ from datetime import datetime
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 import pandas as pd
+from time import sleep
 
 def ler_dados():
+  sleep(60)
   url = "https://raw.githubusercontent.com/plotly/datasets/master/earthquake.csv"
-  df = pd.read_csv(url)
-  return df
-
+  try:
+    df = pd.read_csv(url)
+    return df
+  except Exception as e:
+    return e
+  
 def e_valido(ti):
   df = ti.xcom_pull(task_ids='ler_dados')
   qtd = df.shape[0]
@@ -17,7 +22,7 @@ def e_valido(ti):
   return 'nvalido'
 
 default_args = {
-    'owner': 'Area 1',  # Defina o proprietário aqui
+    'owner': 'Tester',  # Defina o proprietário aqui
     'depends_on_past': False,
     'start_date': datetime(2024, 8, 22),
     'email_on_failure': False,
@@ -27,13 +32,13 @@ default_args = {
 
 # Definindo o DAG
 with DAG(
-    dag_id='processa_dados_EarthQuake',
+    dag_id='teste_falha',
     description='NAN',
-    dag_display_name="Data Count",
+    dag_display_name="Teste de Falha",
     default_args=default_args,
     schedule_interval=None,
     catchup=False,
-    tags=["prd", "ativo"],
+    tags=["test", "ativo"],
 ) as dag:
   
     ler_dados = PythonOperator(
@@ -45,7 +50,7 @@ with DAG(
     )
     
     valido = BashOperator(
-      task_id = 'valido', bash_command = "echo 'Quantidade OK'"
+      task_id = 'validos', bash_command = "echo 'Quantidade OK'"
     )
     
     nvalido = BashOperator(

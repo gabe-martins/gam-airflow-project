@@ -3,10 +3,12 @@ from datetime import datetime
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 import pandas as pd
+from time import sleep
 
 def ler_dados():
   url = "https://raw.githubusercontent.com/plotly/datasets/master/earthquake.csv"
   df = pd.read_csv(url)
+  sleep(240)
   return df
 
 def e_valido(ti):
@@ -17,7 +19,7 @@ def e_valido(ti):
   return 'nvalido'
 
 default_args = {
-    'owner': 'Area 1',  # Defina o proprietário aqui
+    'owner': 'Tester',  # Defina o proprietário aqui
     'depends_on_past': False,
     'start_date': datetime(2024, 8, 22),
     'email_on_failure': False,
@@ -27,13 +29,13 @@ default_args = {
 
 # Definindo o DAG
 with DAG(
-    dag_id='processa_dados_EarthQuake',
+    dag_id='teste_execucao',
     description='NAN',
-    dag_display_name="Data Count",
+    dag_display_name="Teste de Execucao",
     default_args=default_args,
     schedule_interval=None,
     catchup=False,
-    tags=["prd", "ativo"],
+    tags=["test", "ativo"],
 ) as dag:
   
     ler_dados = PythonOperator(
