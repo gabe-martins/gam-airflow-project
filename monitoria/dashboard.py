@@ -99,8 +99,8 @@ def main():
     df = df
   
   df = df.style.applymap(color_age, subset=['state'])
-  
-  # st.subheader("Tabela de Informações")
+   
+  st.subheader("Tabela de Informações")
   st.dataframe(df, use_container_width=True)
   
   # if st.checkbox("Mostrar Estatísticas"):
