@@ -1,12 +1,51 @@
-dag_id,start_date,end_date,run_type,state,execution_time,dag_display_name,is_active,is_paused,is_subdag,root_dag_id,owners,tags,schedule_interval,timetable_description
-processa_dados_EarthQuake,03-10-2024 12:51:37,03-10-2024 12:51:56,manual,success,0 days 00:00:18.945904,Data Count,True,False,False,,Area 1,"prd, ativo",,"Never, external triggers only"
-earthquake_data_upstream,04-10-2024 15:01:30,04-10-2024 15:01:55,manual,success,0 days 00:00:24.413167,Upstream EarthQuake Data,True,False,False,,Area 1,"prd, ativo",,"Never, external triggers only"
-processa_dados_EarthQuake,04-10-2024 15:01:31,04-10-2024 15:01:52,manual,success,0 days 00:00:20.984213,Data Count,True,False,False,,Area 1,"prd, ativo",,"Never, external triggers only"
-teste_execucao,04-10-2024 15:02:17,04-10-2024 15:06:23,manual,success,0 days 00:04:06.536070,Teste de Execucao,True,False,False,,Tester,"test, ativo",,"Never, external triggers only"
-teste_execucao,04-10-2024 15:17:18,04-10-2024 15:21:26,manual,success,0 days 00:04:08.526099,Teste de Execucao,True,False,False,,Tester,"test, ativo",,"Never, external triggers only"
-teste_execucao,04-10-2024 15:26:32,04-10-2024 15:30:42,manual,success,0 days 00:04:09.922266,Teste de Execucao,True,False,False,,Tester,"test, ativo",,"Never, external triggers only"
-teste_execucao,04-10-2024 15:34:00,04-10-2024 15:38:09,manual,success,0 days 00:04:08.987519,Teste de Execucao,True,False,False,,Tester,"test, ativo",,"Never, external triggers only"
-teste_falha,04-10-2024 15:34:34,04-10-2024 15:40:41,manual,failed,0 days 00:06:06.868520,Teste de Falha,True,False,False,,Tester,"test, ativo",,"Never, external triggers only"
-earthquake_data_upstream,04-10-2024 15:34:38,04-10-2024 15:34:53,manual,success,0 days 00:00:15.468413,Upstream EarthQuake Data,True,False,False,,Area 1,"prd, ativo",,"Never, external triggers only"
-teste_falha,04-10-2024 17:36:13,,manual,running,,Teste de Falha,True,False,False,,Tester,"test, ativo",,"Never, external triggers only"
-teste_execucao,04-10-2024 17:36:16,,manual,running,,Teste de Execucao,True,False,False,,Tester,"test, ativo",,"Never, external triggers only"
+dag_id;start_date;end_date;run_type;state;start_hour;execution_time;dag_display_name;is_active;is_paused;is_subdag;root_dag_id;owners;tags;schedule_interval;timetable_description
+earthquake_data_upstream;22/10/2024 14:03;22/10/2024 14:04;manual;success;14;0 days 00:00:31.508536;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_falha;22/10/2024 14:03;22/10/2024 14:10;manual;failed;14;0 days 00:06:40.432990;Teste de Falha;True;False;False;;Tester;test, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 14:03;22/10/2024 14:07;manual;success;14;0 days 00:04:19.294494;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 14:03;22/10/2024 14:04;manual;success;14;0 days 00:00:27.984439;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 14:09;22/10/2024 14:10;manual;success;14;0 days 00:00:38.089895;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 14:09;22/10/2024 14:10;manual;success;14;0 days 00:00:38.900819;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 14:09;22/10/2024 14:14;manual;success;14;0 days 00:04:14.603065;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 14:09;22/10/2024 14:10;manual;success;14;0 days 00:00:51.556800;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 14:30;22/10/2024 14:30;manual;success;14;0 days 00:00:13.883067;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_falha;22/10/2024 14:30;;manual;running;14;;Teste de Falha;True;False;False;;Tester;test, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 14:30;;manual;running;14;;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 14:30;22/10/2024 14:30;manual;success;14;0 days 00:00:12.612417;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 10:00;22/10/2024 10:30;manual;success;10;0 days 00:00:31.508536;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_falha;22/10/2024 14:00;22/10/2024 08:20;manual;failed;14;0 days 00:06:40.432990;Teste de Falha;True;False;False;;Tester;test, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 09:30;22/10/2024 09:50;manual;success;9;0 days 00:04:19.294494;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 11:00;22/10/2024 11:15;manual;success;11;0 days 00:00:27.984439;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 12:00;22/10/2024 12:20;manual;success;12;0 days 00:00:38.089895;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 10:30;22/10/2024 10:50;manual;success;10;0 days 00:00:38.900819;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 02:00;22/10/2024 02:20;manual;success;2;0 days 00:04:14.603065;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 09:30;22/10/2024 09:45;manual;success;9;0 days 00:00:51.556800;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 11:00;22/10/2024 11:10;manual;success;11;0 days 00:00:13.883067;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_falha;22/10/2024 12:00;;manual;running;12;;Teste de Falha;True;False;False;;Tester;test, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 10:00;;manual;running;10;;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 14:00;22/10/2024 14:30;manual;success;14;0 days 00:00:12.612417;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 10:00;22/10/2024 10:30;manual;success;10;0 days 00:00:31.508536;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_falha;22/10/2024 14:00;22/10/2024 00:20;manual;failed;14;0 days 00:06:40.432990;Teste de Falha;True;False;False;;Tester;test, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 09:30;22/10/2024 09:50;manual;success;9;0 days 00:04:19.294494;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 11:00;22/10/2024 11:15;manual;success;11;0 days 00:00:27.984439;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 12:00;22/10/2024 12:20;manual;success;12;0 days 00:00:38.089895;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 10:30;22/10/2024 10:50;manual;success;10;0 days 00:00:38.900819;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 11:00;22/10/2024 11:30;manual;success;11;0 days 00:04:14.603065;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 13:00;22/10/2024 13:30;manual;success;13;0 days 00:00:51.556800;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 08:45;22/10/2024 09:15;manual;success;8;0 days 00:00:13.883067;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_falha;22/10/2024 10:00;;manual;running;10;;Teste de Falha;True;False;False;;Tester;test, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 12:45;;manual;running;12;;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 09:30;22/10/2024 10:00;manual;success;9;0 days 00:00:12.612417;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 01:00;22/10/2024 01:30;manual;success;1;0 days 00:00:31.508536;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_falha;22/10/2024 02:45;22/10/2024 03:15;manual;failed;2;0 days 00:06:40.432990;Teste de Falha;True;False;False;;Tester;test, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 03:00;22/10/2024 03:30;manual;success;3;0 days 00:04:19.294494;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 04:30;22/10/2024 05:00;manual;success;4;0 days 00:00:27.984439;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 05:15;22/10/2024 05:45;manual;success;5;0 days 00:00:38.089895;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 06:00;22/10/2024 06:30;manual;success;6;0 days 00:00:38.900819;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 06:45;22/10/2024 07:15;manual;success;6;0 days 00:04:14.603065;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 01:30;22/10/2024 02:00;manual;success;1;0 days 00:00:51.556800;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 02:00;22/10/2024 02:30;manual;success;2;0 days 00:00:13.883067;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_falha;22/10/2024 03:45;22/10/2024 04:15;manual;success;3;0 days 00:00:13.883067;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+teste_execucao;22/10/2024 04:00;22/10/2024 04:30;manual;success;4;0 days 00:00:31.508536;Upstream EarthQuake Data;True;False;False;;Area 1;prd, ativo;;Never, external triggers only
+processa_dados_EarthQuake;22/10/2024 05:30;22/10/2024 06:00;manual;failed;5;0 days 00:06:40.432990;Teste de Falha;True;False;False;;Tester;test, ativo;;Never, external triggers only
+earthquake_data_upstream;22/10/2024 06:15;22/10/2024 06:45;manual;success;6;0 days 00:04:19.294494;Teste de Execucao;True;False;False;;Tester;test, ativo;;Never, external triggers only
+teste_falha;22/10/2024 07:00;22/10/2024 07:30;manual;success;7;0 days 00:00:27.984439;Data Count;True;False;False;;Area 1;prd, ativo;;Never, external triggers only

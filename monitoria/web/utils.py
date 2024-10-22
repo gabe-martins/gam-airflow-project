@@ -1,5 +1,3 @@
-import streamlit as st
-
 import pandas as pd
 import requests
 from requests.auth import HTTPBasicAuth
@@ -65,46 +63,3 @@ def get_data():
   
   del dagsDF, runsDF, data, response
   return df
-  
-def color_age(val):
-    if val == 'failed':
-      color = "#ff0000"
-    elif val == 'success':
-      color = "#008000"
-    elif val == 'running':
-      color = "#00ff00"
-    elif val == 'queued':
-      color = "#808080"
-    else:
-      color = "#FFF"
-      
-    return f'background-color: {color}'
-
-  
-def main():
-  # df = get_data()
-  df = pd.read_csv('./dados_modelo.csv')
-  st.title("Sustentação Airflow")
-  stats = st.multiselect ("Status:", df['state'].unique())
-  owners = st.multiselect ("Owners:", df['owners'].unique())
-  
-  if stats:
-    df = df[df['state'].isin(stats)]
-  else:
-    df = df
-    
-  if owners:
-    df = df[df['owners'].isin(owners)]
-  else:
-    df = df
-  
-  df = df.style.applymap(color_age, subset=['state'])
-   
-  st.subheader("Tabela de Informações")
-  st.dataframe(df, use_container_width=True)
-  
-  # if st.checkbox("Mostrar Estatísticas"):
-  #   st.write(df.describe())
-
-  
-main()
