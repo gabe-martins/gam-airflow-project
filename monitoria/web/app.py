@@ -1,7 +1,6 @@
 import streamlit as st
-import plotly.express as px
 import pandas as pd
-import numpy as np
+import utils
 
 def color_age(val):
     if val == 'failed':
@@ -17,43 +16,50 @@ def color_age(val):
     return f'background-color: {color}'
 
 def main():
-  df = pd.read_csv('monitoria\dados_modelo.csv', sep=';')
-  
-  hour_counts = df.groupby(['start_hour', 'state'])['dag_id'].count().reset_index()
-  hour_counts.columns = ['Hour', 'State', 'Count']
-
-  fig = px.bar(hour_counts, x='Hour', y='Count', color='State')
-  fig.update_layout(title='Execuções Hora a Hora', xaxis_title='Hora', yaxis_title='Contagem')
-  
-  # pagina =============================================
+  # Configuracao da pagina
   st.set_page_config(
     layout="wide",
     page_title="Sust. Airflow",
     page_icon=":bar_chart:"
   )
+
+  # Dataframe e Graficos ===============================
+  # Import dos dados
+  df = pd.read_csv('monitoria\dados_modelo.csv', sep=';')
+  # df = utils.get_data()
   
+  # Criacao dos graficos
+  execution_hour_chart = utils.execution_hour_chart(df)
+  execution_mean_chart = utils.execution_mean_chart(df)
+  success_failed_chart = utils.success_failed_chart(df)
+  
+  # pagina =============================================
   st.title("Sustentação Airflow")
+  
+  # Filtragem do dataframe
   stats = st.multiselect ("Status:", df['state'].unique())
   owners = st.multiselect ("Owners:", df['owners'].unique())
-  
   if stats:
     df = df[df['state'].isin(stats)]
   else:
     df = df
-    
   if owners:
     df = df[df['owners'].isin(owners)]
   else:
     df = df
-  
+    
+  # Aplica estilo e cor nas celulas
   df = df.style.applymap(color_age, subset=['state'])
-   
+  
   st.dataframe(df, use_container_width=True)
   
   # if st.checkbox("Mostrar Estatísticas"):
   #   st.write(df.describe())
   
   st.subheader("Estatística de Execuções de DAG")
-  st.plotly_chart(fig)
+  st.plotly_chart(execution_hour_chart)
+  st.plotly_chart(execution_mean_chart)
+  st.plotly_chart(success_failed_chart)
 
-main()
+if __name__ == '__main__':
+  main()
