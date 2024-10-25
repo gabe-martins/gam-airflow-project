@@ -42,9 +42,9 @@ default_args = {
 
 # Definindo o DAG
 with DAG(
-    dag_id='earthquake_data_upstream',
+    dag_id='data_upstream',
     description='NAN',
-    dag_display_name="Upstream EarthQuake Data",
+    dag_display_name="Data Upstream",
     default_args=default_args,
     schedule_interval=None,
     # schedule_interval='*/30 * * * *',  # Agendamento a cada 30 minutos

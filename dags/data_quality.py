@@ -27,7 +27,7 @@ default_args = {
 
 # Definindo o DAG
 with DAG(
-    dag_id='processa_dados_EarthQuake',
+    dag_id='processamento_dados',
     description='NAN',
     dag_display_name="Data Count",
     default_args=default_args,

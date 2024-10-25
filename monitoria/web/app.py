@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 import utils
 
 def color_age(val):
@@ -14,8 +13,9 @@ def color_age(val):
     else:
       color = "#FFF"
     return f'background-color: {color}'
-
-def main():
+  
+  
+def main(): 
   # Configuracao da pagina
   st.set_page_config(
     layout="wide",
@@ -25,8 +25,7 @@ def main():
 
   # Dataframe e Graficos ===============================
   # Import dos dados
-  df = pd.read_csv('monitoria\dados_modelo.csv', sep=';')
-  # df = utils.get_data()
+  df = utils.get_data()
   
   # Criacao dos graficos
   execution_hour_chart = utils.execution_hour_chart(df)
@@ -35,6 +34,8 @@ def main():
   
   # pagina =============================================
   st.title("Sustentação Airflow")
+  
+  st.button("Atualizar", help="Atualizar")
   
   # Filtragem do dataframe
   stats = st.multiselect ("Status:", df['state'].unique())
