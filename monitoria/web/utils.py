@@ -4,27 +4,25 @@ from requests.auth import HTTPBasicAuth
 from datetime import  timedelta, timedelta, datetime
 import plotly.express as px
 import plotly.graph_objects as go
+from datetime import datetime, timedelta
 
 baseUrl = "http://localhost:8080/api/v1"
 username = 'airflow'
 password = 'airflow'
 
-def api_access(findString, method="GET"):
-  today = datetime.now()
-  yesterday = today - timedelta(days=1)
-  tomorrow = today + timedelta(days=1)
-  
-  payload = {
-      "states": [
-          "failed",
-          "running",
-          "queued",
-          "success"
-      ],
-      "start_date_gte": yesterday.strftime("%Y-%m-%dT00:00:00.000Z"),
-      "start_date_lte": tomorrow.strftime("%Y-%m-%dT00:00:00.000Z")
-  }
-  
+def get_datetime(date_arg='hour', time=1):
+  today = datetime.now() + timedelta(hours=3) # Tempo no padrao GMT +00
+  if date_arg.lower() == 'hour':
+    min_datetime = today - timedelta(hours=time)
+    max_datetime = today + timedelta(hours=1)
+    return min_datetime.strftime("%Y-%m-%dT%H:00:00.000Z"), max_datetime.strftime("%Y-%m-%dT%H:00:00.000Z")
+    
+  elif date_arg.lower() == 'day':
+    min_datetime = today - timedelta(days=time)
+    max_datetime = today + timedelta(days=1)
+    return min_datetime.strftime("%Y-%m-%dT00:00:00.000Z"), max_datetime.strftime("%Y-%m-%dT00:00:00.000Z")
+
+def api_access(findString, payload='', method="GET"):
   try:
     if method.upper() == 'POST':
       response = requests.post(baseUrl + findString, json=payload, auth=HTTPBasicAuth(username, password))
@@ -45,8 +43,15 @@ def get_dag_info():
   dagsDF = dagsDF[['dag_id', 'dag_display_name', 'is_active', 'is_paused', 'is_subdag', 'root_dag_id', 'owners', 'tags', 'schedule_interval', 'timetable_description']] 
   return dagsDF
 
-def get_runs_info():
-  data = api_access("/dags/~/dagRuns/list", method='post')
+def get_runs_info(time_arg, time):
+  min_datetime, max_datetime = get_datetime(date_arg=time_arg, time=time)
+  payload = {
+    "states": ["failed","running","queued","success"],
+    "start_date_gte": min_datetime,
+    "start_date_lte": max_datetime
+  }
+    
+  data = api_access("/dags/~/dagRuns/list", payload=payload, method='post')
   runsDF = pd.DataFrame(data['dag_runs'])
   if runsDF.shape[0] > 0:
     runsDF = runsDF[['dag_id','start_date', 'end_date', 'run_type', 'state']]
@@ -62,11 +67,11 @@ def get_runs_info():
     
     return runsDF
   else:
-    return None
+    return pd.DataFrame(columns=['dag_id','start_date', 'end_date', 'run_type', 'state', 'start_hour', 'execution_time'])
   
-def get_data():
+def get_data(time_arg='day', time=1):
   dagsDF = get_dag_info()
-  runsDF = get_runs_info()
+  runsDF = get_runs_info(time_arg, time)
   df = pd.merge(runsDF, dagsDF, on='dag_id', how='inner')
   df['tags'] = df['tags'].apply(lambda x: ', '.join([item['name'] for item in x]))
   df['owners'] = df['owners'].apply(lambda x: x[0] if x else '')
